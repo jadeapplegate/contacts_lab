@@ -4,7 +4,6 @@
 //loop through and pass in value of seed data
 
 $(document).ready(function(){
-	var contacts =  [];
 
    $('input').keypress(function(e){
      if(e.which == 13){
@@ -13,28 +12,28 @@ $(document).ready(function(){
 	     var phone = $('#phone').val();
 	     var email = $('#email').val();
 	     var photo = $('#photo').val();
-	     contact = { cid: contacts.length, name: name, phone: phone, email: email, photo: photo }
+	     contact = { cid: contactsLength(), name: name, phone: phone, email: email, photo: photo }
        addContact(contact);
-       addToContactsArray;
      };
    }); 
 
-   var addToContactsArray = function(contact){
-   	 contacts = contacts.push(contact);
-   };
-
- //  var sports = ["soccer", "baseball"];
-	// var total = sports.push("football", "swimming");
-
-	// console.log(sports); // ["soccer", "baseball", "football", "swimming"]
-	// console.log(total);  // 4
 
 	var addContact = function(contact){
-       var newContact = "<li id='"+contact.cid+"'>" + contact.name + " " + contact.phone + " " + contact.email + " " + "<span class = 'edit'>Edit</span></li>"
-       $(newContact).hide().appendTo('ul').fadeIn(500);
-    };
+		var photo ="<img src='"+contact.photo+"'>";
+		var editButton = "<span class = 'edit'>Edit</span>";
+		var deleteButton = "<span class='delete-contact'>Delete</span>";
+		var newContact = "<li id='"+contact.cid+"'>" + photo + contact.name + " " + contact.phone + " " + contact.email + " " + editButton + " " + deleteButton + "</li>";
+		$(newContact).hide().appendTo('ul').fadeIn(500);
+  };
+
+	 $('ul').on("click", ".delete-contact", function(){
+	 		$(this).parent().fadeOut(500, function(){
+	 		});
+	 });
+
+	 var contactsLength = function(){
+	 	 $('li').length;
+	 }
 
 
-
- });
-
+});
