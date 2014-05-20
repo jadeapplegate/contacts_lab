@@ -42,7 +42,7 @@ ul li {
   font-size:22px;
 }
 
-.delete-contact, .edit {
+.delete-contact, .edit-contact {
   float:right;
   margin-right: 10px;
   cursor:pointer;
